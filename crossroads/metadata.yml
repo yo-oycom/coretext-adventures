@@ -1,0 +1,16 @@
+id: crossroads
+title: The Crossroads
+description: A mystical journey through ancient ruins and enchanted forests, where every choice shapes your destiny and reveals the secrets of a forgotten world.
+image: https://www.oldbookillustrations.com/wp-content/uploads/2017/03/there-lonely.jpg
+author: Cortext Team
+version: 1.0.0
+
+# Type Groups (Dynamic)
+types:
+  Role: [explorer, druid]  # Character's current role (auto-assigned based on highest score)
+
+# Story Flags
+flags:
+  wisdom: false    # Has the character gained wisdom?
+  treasure: false  # Has the character found treasure?
+  blessing_received: false 
