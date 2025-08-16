@@ -14,3 +14,11 @@ flags:
   wisdom: false    # Has the character gained wisdom?
   treasure: false  # Has the character found treasure?
   blessing_received: false 
+
+thoughts:
+  - start.md
+  - crossroads.md
+  - deep_ruins.md
+  - forest.md
+  - ruins.md
+  - spirit.md

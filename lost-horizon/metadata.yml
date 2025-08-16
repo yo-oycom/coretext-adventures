@@ -13,4 +13,16 @@ types:
 flags:
   wisdom: false    # Has the character gained wisdom?
   treasure: false  # Has the character found treasure?
-  knowledge: 0     # Knowledge about Shangri-La (0-10 scale) 
+  knowledge: 0     # Knowledge about Shangri-La (0-10 scale)
+
+ thoughts:
+  - start.md
+  - choice.md
+  - lama.md
+  - library.md
+  - path.md
+  - plane.md
+  - return-world.md
+  - stay-forever.md
+  - temple.md
+  - valley.md
