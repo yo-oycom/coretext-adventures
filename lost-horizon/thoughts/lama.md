@@ -24,7 +24,7 @@ Despite his apparent age—which must be several hundred years—the High Lama's
 
 "Welcome to Shangri-La," he says, his voice soft but clear. "I have been expecting you. The valley has a way of calling to those who are ready to understand its true nature."
 
-{{#if (gte knowledge 5)}}
+{{#if (score "knowledge" 5)}}
 Your studies in the library have prepared you for this meeting. You understand that Shangri-La is more than just a place of eternal youth—it's a sanctuary of wisdom, a repository of human knowledge that has been preserved and protected for generations.
 {{/if}}
 

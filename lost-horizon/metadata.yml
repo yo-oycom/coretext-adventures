@@ -9,11 +9,14 @@ version: 1.0.0
 types:
   Role: [investigator, rescuer, explorer]  # Character's current role (auto-assigned based on highest score)
 
+# Game variables (what the story remembers)
+scores:
+  knowledge: 0  # Knowledge about Shangri-La (0-10 scale)
+
 # Story Flags
 flags:
   wisdom: false    # Has the character gained wisdom?
   treasure: false  # Has the character found treasure?
-  knowledge: 0     # Knowledge about Shangri-La (0-10 scale)
 
 thoughts:
   - start.md
