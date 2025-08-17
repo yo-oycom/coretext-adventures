@@ -6,8 +6,6 @@ This repository contains interactive stories for the Cortext application. Storie
 
 **Want to create a story? Here's what you need to know:**
 
-> **🆕 New Intelligent Helper System**: We've updated to a smarter helper system that automatically detects whether you want conditional content or direct output. Use `{{#trait "Role" "=" "explorer"}}` for conditional content or `{{trait "Role"}}` for direct output - the same helper handles both! See the [Handlebars Helpers](#-available-handlebars-helpers) section for details.
-
 1. **Create a folder** for your story
 2. **Add `metadata.yml`** with your story info and game variables
 3. **Create `scenes/` folder** with your story content (`.md` files)
@@ -19,21 +17,21 @@ This repository contains interactive stories for the Cortext application. Storie
 
 Think of game variables as ways to remember what happens in your story:
 
-- **Scores** = Numbers that go up and down (like experience points)
-- **Types** = Character traits that develop (like becoming more of a warrior or explorer)
-- **Flags** = Yes/No questions (like "Do you have a key?" or "Is the door unlocked?")
-- **Strings** = Text information (like the player's name or where they've been)
+- **Stats** = Numbers that go up and down (like experience points)
+- **Traits** = Character traits that develop (like becoming more of a warrior or explorer)
+- **Has** = Yes/No questions (like "Do you have a key?" or "Is the door unlocked?")
+- **Text** = Text information (like the player's name or where they've been)
 
 These let you create stories that remember player choices and show different content based on what they've done!
 
 ## 📁 Repository Structure
 
 ```
-coretext-stories/
+
 ├── stories.json                    # Main manifest listing all available stories
 ├── crossroads/                     # Story directory
 │   ├── metadata.yml               # Story metadata and configuration
-│   └── scenes/                  # scene files (story content)
+│   └── scenes/                    # Scene files (story content)
 │       ├── start.md               # Starting scene
 │       ├── crossroads.md          # Story content
 │       ├── deep_ruins.md          # Story content
@@ -42,7 +40,7 @@ coretext-stories/
 │       └── spirit.md              # Story content
 └── lost-horizon/                  # Another story directory
     ├── metadata.yml               # Story metadata and configuration
-    └── scenes/                  # scene files (story content)
+    └── scenes/                    # Scene files (story content)
         ├── start.md               # Starting scene
         ├── choice.md              # Story content
         ├── lama.md                # Story content
@@ -118,11 +116,11 @@ scenes:
   - ending.md
 ```
 
-## 📝 Creating scene Files
+## 📝 Creating Scene Files
 
-**scene files are the building blocks of your story.** Each one represents a scene or moment where the player makes a choice.
+**Scene files are the building blocks of your story.** Each one represents a scene or moment where the player makes a choice.
 
-### Basic scene Structure
+### Basic Scene Structure
 Each scene file (`.md`) should follow this format:
 
 ```markdown
@@ -167,7 +165,7 @@ You find yourself at a crossroads in a mysterious forest. The path splits in two
 
 - **`id`**: A unique name for this scene (like "start", "choice1", "ending")
 - **`title`**: What to call this scene (optional)
-- **`set`**: What happens when the player reaches this scene (scores go up, flags change, etc.)
+- **`set`**: What happens when the player reaches this scene (stats go up, has changes, etc.)
 - **`options`**: The choices the player can make
 - **Content**: The story text that describes what's happening
 
@@ -293,8 +291,8 @@ Your chosen path: {{text "chosenPath"}}
 
 **This is a special feature that automatically shows different text based on which character trait the player has developed the most.**
 
-#### Setting Up Role Types
-In your `metadata.yml`, simply define your role types:
+#### Setting Up Role Traits
+In your `metadata.yml`, simply define your role traits:
 
 ```yaml
 traits:
@@ -302,12 +300,12 @@ traits:
 ```
 
 **That's it!** The system automatically:
-- Creates score tracking for each type
-- Determines which type has the highest score
+- Creates score tracking for each trait
+- Determines which trait has the highest score
 - Updates the role as players make choices
 
 #### Using Role-Based Content
-Use the `{{#trait "Role" "=" "typeName"}}` helper to show different text based on the player's current role:
+Use the `{{#trait "Role" "=" "traitName"}}` helper to show different text based on the player's current role:
 
 ```markdown
 {{#trait "Role" "=" "druid"}}
@@ -337,9 +335,9 @@ Your current role is: {{trait "Role"}}
 ```
 
 #### How It Works
-1. **Define your types**: `types: Role: [explorer, warrior, scholar, mage, druid]`
+1. **Define your traits**: `traits: Role: [explorer, warrior, scholar, mage, druid]`
 2. **System tracks scores**: Automatically creates `explorer_score`, `warrior_score`, etc.
-3. **Dynamic content**: Text changes based on which type has the highest score
+3. **Dynamic content**: Text changes based on which trait has the highest score
 4. **Real-time updates**: Role determination updates as players make choices
 
 #### Complete Example
@@ -378,49 +376,66 @@ What do you do next?
 
 ## 🔧 Available Handlebars Helpers
 
-The engine provides intelligent helpers that automatically detect whether they're being used for conditional content or direct output. Each helper works in both modes!
-
-### Combined Helpers (Conditional + Output)
-
-#### Trait Helpers
-- **`{{#trait "group" "=" "value"}}`**: Check if a trait group has a specific dominant value (e.g., `{{#trait "Role" "=" "explorer"}}`)
-- **`{{#trait "group" ">" 5}}`**: Check if a trait score meets a threshold (e.g., `{{#trait "Role" ">" 3}}`)
-- **`{{trait "group"}}`**: Get the current dominant trait value (e.g., `{{trait "Role"}}` outputs "explorer")
-
-#### Stat Helpers
-- **`{{#stat "name" ">=" 10}}`**: Check if a stat meets a threshold (e.g., `{{#stat "experience" ">=" 10}}`)
-- **`{{#stat "name" "<" 5}}`**: Check if a stat is below a threshold (e.g., `{{#stat "strength" "<" 5}}`)
-- **`{{#stat "name" ">" 3}}`**: Check if a stat is above a threshold (e.g., `{{#stat "knowledge" ">" 3}}`)
-- **`{{#stat "name" "<=" 8}}`**: Check if a stat is at or below a threshold (e.g., `{{#stat "health" "<=" 8}}`)
-- **`{{#stat "name" "==" 15}}`**: Check if a stat equals a value (e.g., `{{#stat "level" "==" 15}}`)
-- **`{{stat "name"}}`**: Get the current stat value (e.g., `{{stat "experience"}}` outputs 15)
-
-#### Text Helpers
-- **`{{#text "name" "=" "value"}}`**: Check if a text value equals a specific string (e.g., `{{#text "chosenPath" "=" "left"}}`)
-- **`{{text "name"}}`**: Get the current text value (e.g., `{{text "chosenPath"}}` outputs "left")
-
-#### Has Helpers
-- **`{{#has "flag"}}`**: Check if a flag is true (e.g., `{{#has "foundTreasure"}}`)
-- **`{{has "flag"}}`**: Get the current flag value (e.g., `{{has "foundTreasure"}}` outputs true)
-
-#### History Helpers
-- **`{{#history "visited_scene"}}`**: Check if a scene has been visited (e.g., `{{#history "visited_start"}}`)
-- **`{{history "visited_scene"}}`**: Get visit count for a scene (e.g., `{{history "start"}}` outputs 1)
+The engine provides helpers that automatically detect whether you want conditional content or direct output.
 
 ### How It Works
 - **With `#`**: `{{#trait "Role" "=" "builder"}}content{{/trait}}` → Conditional rendering
 - **Without `#`**: `{{trait "Role"}}` → Direct output of value
 
-**Example**: The same helper handles both use cases:
-```markdown
-{{#trait "Role" "=" "builder"}}
-  **As a Builder**, you can construct amazing structures.
-{{/trait}}
+### Available Helpers
 
-Your current role is: {{trait "Role"}}
+#### Trait Helpers
+- **`{{#trait "Role" "=" "explorer"}}`**: Show content only if player is an explorer
+- **`{{trait "Role"}}`**: Display the player's current role
+
+#### Stat Helpers
+- **`{{#stat "experience" ">=" 10}}`**: Show content only if experience is 10 or higher
+- **`{{stat "experience"}}`**: Display the current experience value
+
+#### Has Helpers (for boolean flags)
+- **`{{#has "hasKey"}}`**: Show content only if player has a key (true)
+- **`{{#has "first_time"}}`**: Show content only if it's the first time (true)
+- **`{{has "hasKey"}}`**: Display whether player has a key (true/false)
+
+#### Text Helpers
+- **`{{#text "chosenPath" "=" "left"}}`**: Show content only if chosen path is "left"
+- **`{{text "chosenPath"}}`**: Display the current chosen path
+
+#### Visited Helpers (for visited scenes)
+- **`{{#visited "start"}}`**: Show content only if player visited the start scene
+
+### Helper Differences
+
+**`{{#has "first_time"}}`** - Checks if a boolean flag is true (like "first_time: true")
+**`{{#visited "start"}}`** - Checks if a scene has been visited (like visiting the "start" scene)
+
+**Example:**
+```yaml
+# In metadata.yml
+has:
+  first_time: true    # This is a boolean flag
+
+# In a scene file
+{{#has "first_time"}}
+  Welcome! This is your first time here.
+{{/has}}
+
+{{#visited "start"}}
+  You've been to the start before.
+{{/visited}}
 ```
 
+### Using Helpers in if: Conditions
 
+You can also use these helpers in the `if:` field of scenes and options:
+
+```yaml
+if: trait "Role" "=" "explorer"
+if: stat "experience" ">=" 10
+if: has "hasKey"
+if: text "chosenPath" "=" "left"
+if: visited "start"
+```
 
 ## 📚 Story Examples
 
@@ -446,19 +461,19 @@ options:
   - text: Use magic
     next: magic-path
     set:
-      types:
+      traits:
         Role:
           mage: "+1"
   - text: Fight
     next: fight-path
     set:
-      types:
+      traits:
         Role:
           warrior: "+1"
   - text: Sneak past
     next: stealth-path
     set:
-      types:
+      traits:
         Role:
           rogue: "+1"
 ---
@@ -554,7 +569,7 @@ What do you do?
 
 ## 🚨 Important Rules
 
-### 1. scene IDs Must Be Unique
+### 1. Scene IDs Must Be Unique
 - Each scene file must have a unique `id` in its frontmatter
 - IDs are used for navigation between scenes
 
@@ -563,13 +578,13 @@ What do you do?
 - The `start.md` scene is automatically loaded when a story begins
 
 ### 3. File Naming
-- **scene files**: Use descriptive names like `start.md`, `crossroads.md`, `deep_ruins.md`
+- **Scene files**: Use descriptive names like `start.md`, `crossroads.md`, `deep_ruins.md`
 - **Metadata file**: Must be named `metadata.yml`
 - **Manifest file**: Must be named `stories.json`
 
 ### 4. YAML Syntax
 - **Use spaces, not tabs** for indentation
-- **Quote strings** that contain special characters
+- **Quote text values** that contain special characters
 - **Use arrays** for lists like `scenes: [file1.md, file2.md]`
 
 ## 🔍 Testing Your Story
@@ -582,72 +597,17 @@ What do you do?
 ### 2. Test Navigation
 - Start the story and follow each path
 - Check that all choices lead to the expected scenes
-- Verify that state changes (score, types) work correctly
+- Verify that state changes (stats, traits) work correctly
 
 ### 3. Test Conditionals
 - Play through different paths to test conditional content
-- Verify that type-based and score-based conditions work
+- Verify that trait-based and stat-based conditions work
 - Test visit-based conditions by revisiting scenes
-
-## 📖 Best Practices
-
-### Story Design
-- **Start simple**: Begin with a basic story structure and add complexity
-- **Plan your paths**: Map out the story flow before writing
-- **Test thoroughly**: Play through all possible paths
-- **Use meaningful IDs**: Make scene IDs descriptive and memorable
-
-### Content Organization
-- **Group related scenes**: Use subdirectories for complex stories
-- **Consistent naming**: Follow a consistent pattern for file names
-- **Document your story**: Include comments in metadata for complex logic
-
-### Performance
-- **Optimize images**: Use appropriately sized images for web
-- **Minimize file size**: Keep scene content concise but engaging
-- **Efficient navigation**: Avoid unnecessary back-and-forth between scenes
-
-## 🆘 Troubleshooting
-
-### Common Issues
-
-#### Story Not Loading
-- Check that `stories.json` includes your story ID
-- Verify `metadata.yml` has the correct `id` field
-- Ensure all required fields are present
-
-#### scenes Not Found
-- Verify all scene files listed in `metadata.yml` exist
-- Check that file names match exactly (including case)
-- Ensure scene files are in the `scenes/` subdirectory
-
-#### Navigation Errors
-- Check that all `next` values point to valid scene IDs
-- Verify that scene IDs are unique across the entire story
-- Ensure `start.md` exists and is properly formatted
-
-#### Conditional Content Not Working
-- Check that type and score values are being set correctly
-- Verify Handlebars syntax is correct
-- Test with different game states to ensure conditions work
-
-## 📞 Support
-
-If you encounter issues:
-1. **Check the console** for error messages
-2. **Verify file structure** matches the examples above
-3. **Test with a simple story** to isolate the problem
-4. **Check YAML syntax** for proper formatting
 
 ## 🎯 Next Steps
 
 1. **Create your first story** using the examples above
 2. **Test the story** in the Cortext application
 3. **Iterate and improve** based on player feedback
-4. **Share your stories** with the community!
 
 Happy storytelling! 📚✨
-
-
-
-

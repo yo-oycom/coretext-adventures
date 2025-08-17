@@ -27,9 +27,9 @@ options:
 
 The ancient ruins stand before you, their weathered stones telling stories of civilizations long forgotten. The air is thick with the weight of history, and you can feel the echoes of the past all around you.
 
-{{#history "ruins"}}
+{{#visited "ruins"}}
 **You've been here before**, and the familiar layout brings back memories of your previous exploration.
-{{/history}}
+{{/visited}}
 
 {{#trait "Role" "=" "explorer"}}
 Your explorer's instincts are immediately drawn to the deeper chambers, where the most interesting discoveries likely await.

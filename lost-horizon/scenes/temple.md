@@ -33,15 +33,15 @@ The ancient temple rises before you, its weathered stone walls telling stories o
 The temple appears to be dedicated to some kind of ancient wisdom or knowledge, with its walls covered in hieroglyphs and mystical symbols. The air is thick with the weight of history, and you can feel the echoes of the past all around you.
 
 {{#trait "Role" "=" "investigator"}}
-Your analytical mind immediately begins studying the temple's structure and the symbols on its walls, looking for clues about its purpose and the people who built it.
+Your analytical mind immediately begins studying the temple's structure and the symbols on its walls, looking for clues about its purpose and the people who built it. You notice architectural details that suggest advanced engineering techniques.
 {{/trait}}
 
 {{#trait "Role" "=" "rescuer"}}
-Your protective instincts make you cautious about entering the temple, concerned about potential dangers that might lurk within its ancient chambers.
+Your protective instincts make you cautious about entering the temple, concerned about potential dangers that might lurk within its ancient chambers. You want to ensure it's safe before proceeding.
 {{/trait}}
 
 {{#trait "Role" "=" "explorer"}}
-Your adventurous spirit is immediately drawn to the temple's mysterious chambers, eager to discover what secrets and treasures they might contain.
+Your adventurous spirit is immediately drawn to the temple's mysterious chambers, eager to discover what secrets and treasures they might contain. This could be the discovery of a lifetime.
 {{/trait}}
 
 The temple's main entrance is flanked by two massive stone pillars, each carved with different symbols representing what appear to be fundamental forces of nature. The air around the entrance crackles with energy, and you can feel the power that once flowed through this place.

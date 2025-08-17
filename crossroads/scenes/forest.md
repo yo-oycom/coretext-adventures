@@ -29,9 +29,9 @@ options:
 
 The ancient forest surrounds you with its towering trees and mysterious atmosphere. The air is thick with the scent of earth and growth, and you can hear the gentle rustling of leaves and the distant calls of forest creatures.
 
-{{#history "forest"}}
+{{#visited "forest"}}
 **You've walked these paths before**, and the familiar sights and sounds bring back memories of your previous journey through these woods.
-{{/history}}
+{{/visited}}
 
 {{#trait "Role" "=" "druid"}}
 Your druidic senses immediately connect with the natural energy flowing through this forest, feeling the ancient magic that has protected these groves for centuries.

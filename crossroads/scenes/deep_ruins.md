@@ -29,9 +29,9 @@ options:
 
 You've ventured into the deepest chambers of the ancient ruins, where the air is thick with the weight of forgotten knowledge. The stone walls here are covered in intricate carvings and symbols that seem to pulse with a subtle, otherworldly light.
 
-{{#history "deep_ruins"}}
+{{#visited "deep_ruins"}}
 **You've explored these depths before**, and the familiar patterns in the stonework bring back memories of your previous discoveries.
-{{/history}}
+{{/visited}}
 
 The deeper chambers reveal the true purpose of this ancient structure. This was once a place of great learning and power, where scholars and mystics gathered to study the secrets of the universe. The carvings on the walls tell stories of cosmic forces, elemental magic, and the fundamental laws that govern reality itself.
 
