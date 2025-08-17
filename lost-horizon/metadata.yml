@@ -18,7 +18,7 @@ flags:
   wisdom: false    # Has the character gained wisdom?
   treasure: false  # Has the character found treasure?
 
-thoughts:
+scenes:
   - start.md
   - choice.md
   - lama.md

@@ -19,7 +19,7 @@ flags:
   treasure: false           # Has the character found treasure?
 
 # List your story files
-thoughts:
+scenes:
   - start.md
   - crossroads.md
   - deep_ruins.md
