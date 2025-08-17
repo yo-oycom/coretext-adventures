@@ -41,6 +41,18 @@ options:
       traits:
         Role:
           explorer: "+1"
+  - text: Visit the library
+    next: library
+    set:
+      stats:
+        experience: "+1"
+        knowledge: "+2"
+  - text: Meet the High Lama
+    next: lama
+    set:
+      stats:
+        experience: "+2"
+        knowledge: "+1"
   - text: Return to the valley
     next: valley
     set:
@@ -65,5 +77,7 @@ Your adventurous spirit is immediately drawn to the temple's mysterious chambers
 {{/trait}}
 
 The temple's main entrance is flanked by two massive stone pillars, each carved with different symbols representing what appear to be fundamental forces of nature. The air around the entrance crackles with energy, and you can feel the power that once flowed through this place.
+
+To the left of the main entrance, you notice a smaller doorway that leads to what appears to be a library wing. The ancient texts and scrolls stored there could contain valuable knowledge about Shangri-La and its history.
 
 How will you approach exploring this ancient temple? 

@@ -21,6 +21,17 @@ options:
     set:
       stats:
         experience: "+1"
+  - text: Visit the library
+    next: library
+    set:
+      stats:
+        experience: "+1"
+        knowledge: "+2"
+  - text: Return to the temple
+    next: temple
+    set:
+      stats:
+        experience: "+1"
 ---
 
 The High Lama's chambers are a study in simplicity and elegance. The room is sparsely furnished but every item seems to have been chosen with great care and purpose. The High Lama himself sits in a simple chair by the window, his ancient face radiating wisdom and serenity.

@@ -1,6 +1,7 @@
 ---
 id: start
 title: Plane Crash
+image: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiNJZJ417IuIB8WcHiR2j_vxVaGoZyuOseJmpXU9bbOabbrPw1F2RFJdhF9fNRir_FAM4VCT8SfyrKqEhxi6sm_5EEdYYwvm_WbwDA_9piIIylD7rDULzgKZMPaEsio6e0pFHJBBSTSRCKQ/s1600/Lost+Horizon+3.jpg
 set:
   stats:
     experience: "+1"

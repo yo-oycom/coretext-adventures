@@ -32,6 +32,11 @@ options:
     set:
       stats:
         knowledge: "+1"
+  - text: Return to the temple
+    next: temple
+    set:
+      stats:
+        experience: "+1"
   - text: Return to the High Lama
     next: lama
 ---
