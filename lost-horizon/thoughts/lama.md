@@ -2,21 +2,25 @@
 id: lama
 title: Meeting the High Lama
 set:
-  score: "+3"
-  knowledge: "+2"
+  scores:
+    experience: "+3"
+    knowledge: "+2"
 options:
   - text: Ask about the nature of Shangri-La
     next: choice
     set:
-      knowledge: "+2"
+      scores:
+        knowledge: "+2"
   - text: Inquire about staying in the valley
     next: choice
     set:
-      score: "+1"
+      scores:
+        experience: "+1"
   - text: Ask about returning to the outside world
     next: choice
     set:
-      score: "+1"
+      scores:
+        experience: "+1"
 ---
 The High Lama's chambers are a study in simplicity and elegance. The room is sparsely furnished but every item seems to have been chosen with great care and purpose. The High Lama himself sits in a simple chair by the window, his ancient face radiating wisdom and serenity.
 
@@ -24,7 +28,7 @@ Despite his apparent age—which must be several hundred years—the High Lama's
 
 "Welcome to Shangri-La," he says, his voice soft but clear. "I have been expecting you. The valley has a way of calling to those who are ready to understand its true nature."
 
-{{#if (score "knowledge" 5)}}
+{{#if (score "knowledge" ">=" 5)}}
 Your studies in the library have prepared you for this meeting. You understand that Shangri-La is more than just a place of eternal youth—it's a sanctuary of wisdom, a repository of human knowledge that has been preserved and protected for generations.
 {{/if}}
 

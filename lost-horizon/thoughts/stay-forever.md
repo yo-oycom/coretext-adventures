@@ -2,15 +2,17 @@
 id: stay-forever
 title: Eternal Life in Shangri-La
 set:
-  score: "+10"
-  knowledge: "+5"
+  scores:
+    experience: "+10"
+    knowledge: "+5"
 options: []
 ---
-You have chosen to stay in Shangri-La, and as you make this decision, you feel a profound sense of peace and purpose wash over you. The High Lama smiles warmly, and you can see the approval in his ancient eyes.
+
+You have chosen to stay in Shangri-La, and you feel a profound sense of peace and purpose wash over you. The High Lama smiles warmly, and you can see the approval in his ancient eyes.
 
 "Welcome to your new home," he says. "You have chosen wisely. Shangri-La will be richer for your presence, and you will find that life here offers rewards beyond mere immortality."
 
-{{#if (gte knowledge 5)}}
+{{#if (score "knowledge" ">=" 5)}}
 Your understanding of Shangri-La's true purpose makes this choice even more meaningful. You're not just choosing eternal life—you're choosing to become a guardian of human wisdom, a protector of knowledge that might otherwise be lost to time.
 {{/if}}
 

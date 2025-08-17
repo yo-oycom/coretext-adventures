@@ -16,7 +16,6 @@ options:
   - text: Explore the valley gardens
     next: temple
     set:
-      knowledge: "+1"
       types:
         explorer: "+1"
   - text: Seek out the inhabitants
@@ -28,15 +27,15 @@ options:
 ---
 The valley of Shangri-La stretches before you in all its glory. Lush gardens filled with exotic flowers and fruit trees surround elegant buildings that seem to have been designed by a master architect. The air is filled with the sweet scent of blossoms and the gentle sound of flowing water.
 
-{{#if (type "Role" "explorer")}}
+{{#if (typeGroup "Role" "explorer")}}
 Your explorer's spirit is overwhelmed by the sheer wonder of this hidden paradise, and you can't wait to discover every corner of this magical place.
 {{/if}}
 
-{{#if (type "Role" "investigator")}}
+{{#if (typeGroup "Role" "investigator")}}
 Your analytical mind immediately begins cataloging the architectural details, the cultural patterns, and the technological marvels that make this place possible.
 {{/if}}
 
-{{#if (type "Role" "rescuer")}}
+{{#if (typeGroup "Role" "rescuer")}}
 Your compassionate nature makes you wonder about the people who live here and whether they might need any assistance or have stories to share.
 {{/if}}
 

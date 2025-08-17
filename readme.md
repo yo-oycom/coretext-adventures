@@ -259,7 +259,7 @@ Here are examples of how to check game variables:
   **Your explorer instincts kick in!** You notice subtle clues that others might miss.
 {{/if}}
 
-{{#if (score "experience" 10)}}
+{{#if (score "experience" ">=" 10)}}
   **You've gained enough experience** to unlock the secret path.
 {{/if}}
 
@@ -345,34 +345,35 @@ What do you do next?
 ### Variable Type Helpers
 
 #### Score Helpers
-- **`(score "scoreName" value)`**: Check if a specific score is at least the specified value
-- **`(scoreValue "scoreName")`**: Get the current value of a score
+- **`(score "scoreName" ">=" 10)`**: Check if a specific score meets a threshold (e.g., `(score "experience" ">=" 10)`)
+- **`(score "scoreName" "<" 5)`**: Check if a specific score is below a threshold (e.g., `(score "strength" "<" 5)`)
+- **`(score "scoreName" ">" 3)`**: Check if a specific score is above a threshold (e.g., `(score "knowledge" ">" 3)`)
+- **`(score "scoreName" "<=" 8)`**: Check if a specific score is at or below a threshold (e.g., `(score "health" "<=" 8)`)
+- **`(score "scoreName" "==" 15)`**: Check if a specific score equals a value (e.g., `(score "level" "==" 15)`)
+- **`(score "scoreName")`**: Get the current value of a score (e.g., `(score "experience")`)
 
 #### Type Helpers
 - **`(typeGroup "groupName" "typeName")`**: Check if a type is the highest-scoring type in its group (perfect for role-based content)
 - **`(typeGroup "groupName" "typeName" ">=" 5)`**: Check if a type score meets a threshold (e.g., `(typeGroup "Role" "warrior" ">=" 3)`)
 
 #### Flag Helpers
-- **`(flag "flagName")`**: Check if a flag is true
-- **`(notFlag "flagName")`**: Check if a flag is false
+- **`(has "flagName")`**: Check if a flag is true (uses the `has` helper)
 
 #### String Helpers
-- **`(string "stringName" "value")`**: Check if a string equals the specified value
-- **`(hasString "stringName")`**: Check if a string has any value
-- **`(stringValue "stringName")`**: Get the current value of a string
+- **`(string "stringName")`**: Check if a string exists and has content
+- **`(has "stringName")`**: Check if a string has any value (uses the `has` helper)
 
 ### State Helpers
 - **`(visited "thoughtId")`**: Check if a thought has been visited
-- **`(visit_count "thoughtId")`**: Get how many times a thought has been visited
-- **`(first_time "thoughtId")`**: Check if this is the first visit
-- **`(returning "thoughtId")`**: Check if this is a return visit
+- **`(visit_count)`**: Get the total number of visited thoughts
+- **`(first_time)`**: Check if this is the player's first visit
+- **`(returning)`**: Check if the player has visited before
 
 ### Logic Helpers
-- **`(if condition)`**: Standard if statement
-- **`(unless condition)`**: Unless statement (opposite of if)
-- **`(each array)`**: Loop through an array
-- **`(with context)`**: Change the context for a block
-- **`(log message)`**: Log a message to the console (for debugging)
+- **`{{#if condition}}`**: Standard if statement (built into Handlebars)
+- **`{{#unless condition}}`**: Unless statement (built into Handlebars)
+- **`{{#each array}}`**: Loop through an array (built into Handlebars)
+- **`{{#with context}}`**: Change the context for a block (built into Handlebars)
 
 ## 📚 Story Examples
 
@@ -442,10 +443,10 @@ options:
 {{#if (first_time "returning-visitor")}}
   Welcome! This is your first time here.
 {{else}}
-  Welcome back! You've been here {{visit_count "returning-visitor"}} times before.
+  Welcome back! You've been here {{visit_count}} times before.
 {{/if}}
 
-{{#if (score "experience" 20)}}
+{{#if (score "experience" ">=" 20)}}
   **You're becoming quite experienced** in these lands.
 {{/if}}
 ```
@@ -477,11 +478,11 @@ options:
         lastAction: "tried to break door"
 ---
 
-{{#if (flag "hasKey")}}
+{{#if (has "hasKey")}}
   **You have a key** that might fit this door.
 {{/if}}
 
-{{#if (score "strength" 15)}}
+{{#if (score "strength" ">=" 15)}}
   **Your strength** might be enough to break through.
 {{/if}}
 

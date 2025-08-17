@@ -5,16 +5,20 @@ image: https://www.oldbookillustrations.com/wp-content/uploads/2017/03/there-lon
 author: Cortext Team
 version: 1.0.0
 
-# Type Groups (Dynamic)
+# Game variables (what the story remembers)
+scores:
+  experience: 0  # Overall experience gained
+  wisdom: 0      # Wisdom and understanding
+
 types:
   Role: [explorer, druid]  # Character's current role (auto-assigned based on highest score)
 
 # Story Flags
 flags:
-  wisdom: false    # Has the character gained wisdom?
-  treasure: false  # Has the character found treasure?
-  blessing_received: false 
+  blessing_received: false  # Has the character received a blessing?
+  treasure: false           # Has the character found treasure?
 
+# List your story files
 thoughts:
   - start.md
   - crossroads.md

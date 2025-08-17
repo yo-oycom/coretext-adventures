@@ -2,15 +2,17 @@
 id: return-world
 title: Return to the Outside World
 set:
-  score: "+5"
-  knowledge: "+3"
+  scores:
+    experience: "+5"
+    knowledge: "+3"
 options: []
 ---
+
 You have chosen to return to the outside world, and as you make this decision, you feel a mixture of sadness and determination. The High Lama nods understandingly, and you can see the wisdom in his ancient eyes.
 
 "The outside world needs people like you," he says. "People who have seen what is possible, who carry the light of Shangri-La within them. Your journey here has changed you, and you will carry these lessons with you always."
 
-{{#if (gte knowledge 5)}}
+{{#if (score "knowledge" ">=" 5)}}
 Your time in the library and your understanding of Shangri-La's true purpose will serve you well in the outside world. You carry not just memories, but wisdom that could help humanity find a better path.
 {{/if}}
 

@@ -10,19 +10,15 @@ options:
   - text: Meet the High Lama
     next: lama
     set:
-      knowledge: "+2"
       types:
         investigator: "+1"
   - text: Explore the temple library
     next: library
     set:
       knowledge: "+1"
-      types:
-        investigator: "+1"
   - text: Meditate in the gardens
     next: lama
     set:
-      score: "+1"
       types:
         rescuer: "+1"
 ---
@@ -30,15 +26,15 @@ The temple complex is even more magnificent up close. Intricate carvings adorn e
 
 Chang leads you through the temple's grand halls, explaining that this place has been a sanctuary of knowledge for centuries. "The High Lama has been waiting for someone like you," he says. "Someone who can understand the true nature of Shangri-La."
 
-{{#if (type "Role" "investigator")}}
+{{#if (typeGroup "Role" "investigator")}}
 Your analytical mind is working overtime, cataloging every detail. The temple's construction techniques, the materials used, the artwork—all suggest a level of sophistication that shouldn't exist in this remote location.
 {{/if}}
 
-{{#if (type "Role" "rescuer")}}
+{{#if (typeGroup "Role" "rescuer")}}
 Your compassionate nature makes you wonder about the people who built this place and whether they might have needed help or protection in creating such a sanctuary.
 {{/if}}
 
-{{#if (type "Role" "explorer")}}
+{{#if (typeGroup "Role" "explorer")}}
 Your explorer's spirit is thrilled by the discovery of this ancient place, and you're eager to uncover every secret it holds.
 {{/if}}
 
