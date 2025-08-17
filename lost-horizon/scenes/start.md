@@ -1,6 +1,6 @@
 ---
 id: start
-title: Plane Crash
+title: The Plane Crash
 set:
   stats:
     experience: "+1"
