@@ -2,7 +2,7 @@
 id: return-world
 title: Return to the Outside World
 set:
-  scores:
+  stats:
     experience: "+5"
     knowledge: "+3"
 options: []
@@ -12,9 +12,9 @@ You have chosen to return to the outside world, and as you make this decision, y
 
 "The outside world needs people like you," he says. "People who have seen what is possible, who carry the light of Shangri-La within them. Your journey here has changed you, and you will carry these lessons with you always."
 
-{{#if (score "knowledge" ">=" 5)}}
+{{#stat "knowledge" ">=" 5}}
 Your time in the library and your understanding of Shangri-La's true purpose will serve you well in the outside world. You carry not just memories, but wisdom that could help humanity find a better path.
-{{/if}}
+{{/stat}}
 
 As you prepare to leave, Chang gives you a small, beautifully crafted book. "This contains some of the most important lessons from our library," he explains. "Use it wisely, and perhaps one day you will find your way back to us."
 

@@ -1,38 +1,53 @@
 ---
 id: spirit
-title: Forest Spirit
+title: The Spirit's Blessing
 set:
-  wisdom: true
-  blessing_received: true
+  stats:
+    experience: "+3"
+    wisdom: "+2"
   types:
-    druid: "+2"
+    Role:
+      druid: "+2"
+options:
+  - text: Accept the blessing
+    next: start
+    set:
+      has:
+        blessing_received: true
+      stats:
+        wisdom: "+3"
+      types:
+        Role:
+          druid: "+1"
+  - text: Decline respectfully
+    next: start
+    set:
+      stats:
+        experience: "+1"
 ---
-{{#if (has "blessing_received")}}
-The forest spirit recognizes you from before and grants you an additional blessing, its ethereal form shimmering with renewed light as it reaches out to touch your soul. The spirit's presence fills the clearing with a warmth that seems to emanate from the very heart of the forest itself, and you can feel the ancient wisdom flowing through you like a gentle stream.
 
-{{#if (typeGroup "Role" "druid")}}
-Your deepened connection to nature allows you to understand the spirit's language more clearly, receiving insights that few mortals could comprehend.
-{{/if}}
+The spirit's ethereal form shimmers before you, its ancient eyes filled with wisdom and compassion. It speaks in a voice that seems to echo from the depths of time itself.
 
-{{#if (typeGroup "Role" "explorer")}}
-Your explorer's spirit recognizes the unique opportunity this represents, and you carefully observe the spirit's form and behavior for future reference.
-{{/if}}
+{{#has "blessing_received"}}
+**The spirit recognizes your previous blessing** and smiles knowingly.
+{{/has}}
 
-The blessing this time feels deeper, more profound, as if the spirit has come to know you better and has chosen to share secrets that few mortals have ever been privileged to receive. The air around you seems to sparkle with unseen magic, and you notice how the trees themselves seem to lean in closer, their branches forming a protective circle around the clearing.
+{{#trait "Role" "=" "druid"}}
+**As a druid**, you feel a deep connection to this spirit. You sense that it represents the ancient magic of this forest, a guardian of the natural world that has existed here for centuries.
+{{/trait}}
 
-The spirit's voice, when it speaks, is like the rustling of leaves and the babbling of brooks combined, carrying with it the weight of countless years of forest wisdom.
-{{else}}
-A forest spirit blesses your journey, its ethereal form materializing from the very essence of the forest itself. The spirit appears as a being of pure light and shadow, its form shifting and flowing like water, yet somehow solid and real. Its eyes, deep pools of ancient wisdom, seem to look directly into your soul, reading the truth of your heart and intentions.
+{{#trait "Role" "=" "explorer"}}
+**As an explorer**, you're fascinated by this encounter. This spirit represents the kind of discovery that makes your adventures worthwhile—a glimpse into the mystical side of the world.
+{{/trait}}
 
-{{#if (typeGroup "Role" "druid")}}
-Your natural affinity for the forest allows you to immediately connect with the spirit, feeling the ancient magic that flows between you.
-{{/if}}
+The spirit offers you a choice: it can bestow upon you a blessing that will enhance your natural abilities, or you can decline and continue your journey as you are. The choice is yours, and the spirit will respect whatever decision you make.
 
-{{#if (typeGroup "Role" "explorer")}}
-Your explorer's curiosity is piqued by this supernatural encounter, and you carefully observe every detail of the spirit's manifestation.
-{{/if}}
+{{#trait "Role" "=" "druid"}}
+**Your druidic training** tells you that this blessing would be a great honor, a recognition of your connection to the natural world.
+{{/trait}}
 
-The blessing flows through you like warm honey, filling you with a sense of connection to all living things and a deep understanding of the natural world's rhythms and cycles. You can feel the spirit's power coursing through your veins, granting you insights that transcend ordinary human perception.
+{{#trait "Role" "=" "explorer"}}
+**Your explorer's curiosity** makes you wonder what kind of abilities this blessing might grant you.
+{{/trait}}
 
-The forest around you seems to respond to the spirit's presence, with flowers blooming where there were none before and animals emerging from their hiding places to witness this sacred moment. The spirit's voice, when it speaks, is like the rustling of leaves and the babbling of brooks combined, carrying with it the weight of countless years of forest wisdom.
-{{/if}} 
+What do you choose? 

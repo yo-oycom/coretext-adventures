@@ -2,7 +2,7 @@
 id: choice
 title: The Final Choice
 set:
-  scores:
+  stats:
     experience: "+5"
 options:
   - text: Stay in Shangri-La forever
@@ -14,13 +14,13 @@ options:
 
 You stand at a crossroads that will determine the course of your life. Shangri-La stretches before you in all its beauty and wonder—a place of eternal youth, wisdom, and peace. The outside world, with all its chaos, conflict, and uncertainty, lies behind you.
 
-{{#if (score "experience" ">=" 5)}}
+{{#stat "experience" ">=" 5}}
 Your time in the library and your conversations with the High Lama have given you a deep understanding of Shangri-La's true purpose. This isn't just a place of escape—it's a sanctuary of human wisdom, a beacon of hope for future generations.
-{{/if}}
+{{/stat}}
 
-{{#if (typeGroup "Role" "investigator")}}
+{{#trait "Role" "=" "investigator"}}
 Your investigator's instincts tell you that there's more to this choice than meets the eye. The valley's existence, the way you were brought here, the timing of your arrival—all suggest that this moment was carefully orchestrated.
-{{/if}}
+{{/trait}}
 
 The High Lama has explained that Shangri-La needs people like you—people who can understand its true value and help preserve its wisdom for future generations. But he also understands that the outside world needs people who can carry the valley's lessons back to humanity.
 

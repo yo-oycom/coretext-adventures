@@ -6,9 +6,11 @@ This repository contains interactive stories for the Cortext application. Storie
 
 **Want to create a story? Here's what you need to know:**
 
+> **🆕 New Intelligent Helper System**: We've updated to a smarter helper system that automatically detects whether you want conditional content or direct output. Use `{{#trait "Role" "=" "explorer"}}` for conditional content or `{{trait "Role"}}` for direct output - the same helper handles both! See the [Handlebars Helpers](#-available-handlebars-helpers) section for details.
+
 1. **Create a folder** for your story
 2. **Add `metadata.yml`** with your story info and game variables
-3. **Create `thoughts/` folder** with your story content (`.md` files)
+3. **Create `scenes/` folder** with your story content (`.md` files)
 4. **Update `stories.json`** to include your story
 
 **That's it!** The system handles the rest automatically.
@@ -31,8 +33,8 @@ coretext-stories/
 ├── stories.json                    # Main manifest listing all available stories
 ├── crossroads/                     # Story directory
 │   ├── metadata.yml               # Story metadata and configuration
-│   └── thoughts/                  # Thought files (story content)
-│       ├── start.md               # Starting thought
+│   └── scenes/                  # scene files (story content)
+│       ├── start.md               # Starting scene
 │       ├── crossroads.md          # Story content
 │       ├── deep_ruins.md          # Story content
 │       ├── forest.md              # Story content
@@ -40,11 +42,11 @@ coretext-stories/
 │       └── spirit.md              # Story content
 └── lost-horizon/                  # Another story directory
     ├── metadata.yml               # Story metadata and configuration
-    └── thoughts/                  # Thought files (story content)
-        ├── start.md               # Starting thought
+    └── scenes/                  # scene files (story content)
+        ├── start.md               # Starting scene
         ├── choice.md              # Story content
         ├── lama.md                # Story content
-        └── ...                    # Additional thought files
+        └── ...                    # Additional scene files
 ```
 
 ## 🚀 Getting Started
@@ -58,7 +60,7 @@ coretext-stories/
 - Create `metadata.yml` file with your story details and game variables
 
 **Step 3: Add story content**
-- Create `thoughts/` folder for your story files
+- Create `scenes/` folder for your story files
 - Add `.md` files for each part of your story
 
 **Step 4: Tell the system about your story**
@@ -92,46 +94,46 @@ image: https://example.com/image.jpg
 author: Your Name
 
 # Game variables (what the story remembers)
-scores:
+stats:
   knowledge: 0
   strength: 10
   experience: 5
 
-types:
+traits:
   Role: [explorer, warrior, scholar, mage, rogue]
 
-flags:
+has:
   hasKey: false
   doorUnlocked: false
 
-strings:
+text:
   playerName: ""
   chosenPath: ""
 
 # List your story files
-thoughts:
+scenes:
   - start.md
   - choice1.md
   - choice2.md
   - ending.md
 ```
 
-## 📝 Creating Thought Files
+## 📝 Creating scene Files
 
-**Thought files are the building blocks of your story.** Each one represents a scene or moment where the player makes a choice.
+**scene files are the building blocks of your story.** Each one represents a scene or moment where the player makes a choice.
 
-### Basic Thought Structure
-Each thought file (`.md`) should follow this format:
+### Basic scene Structure
+Each scene file (`.md`) should follow this format:
 
 ```markdown
 ---
 id: start
 title: The Beginning
 set:
-  scores:
+  stats:
     knowledge: "+5"
     experience: "+2"
-  types:
+  traits:
     Role:
       explorer: "+2"
       warrior: "+1"
@@ -139,17 +141,17 @@ options:
   - text: Go left
     next: choice1
     set:
-      scores:
+      stats:
         knowledge: "+3"
-      types:
+      traits:
         Role:
           explorer: "+1"
   - text: Go right
     next: choice2
     set:
-      scores:
+      stats:
         strength: "+2"
-      types:
+      traits:
         Role:
           warrior: "+1"
 ---
@@ -163,9 +165,9 @@ You find yourself at a crossroads in a mysterious forest. The path splits in two
 
 ### What Each Part Does
 
-- **`id`**: A unique name for this thought (like "start", "choice1", "ending")
-- **`title`**: What to call this thought (optional)
-- **`set`**: What happens when the player reaches this thought (scores go up, flags change, etc.)
+- **`id`**: A unique name for this scene (like "start", "choice1", "ending")
+- **`title`**: What to call this scene (optional)
+- **`set`**: What happens when the player reaches this scene (scores go up, flags change, etc.)
 - **`options`**: The choices the player can make
 - **Content**: The story text that describes what's happening
 
@@ -177,47 +179,47 @@ You find yourself at a crossroads in a mysterious forest. The path splits in two
 
 Cortext supports four main types of variables that can be used to track game state and create dynamic content:
 
-#### 1. Scores
+#### 1. Stats
 - **What they are**: Numbers that go up and down as players make choices
 - **What they're for**: Tracking progress, experience, resources, etc.
 - **How to use**: Use `"+5"` to add 5, `"-3"` to subtract 3
 - **Example**:
   ```yaml
-  scores:
+  stats:
     knowledge: 0      # Player starts with 0 knowledge
     strength: 10      # Player starts with 10 strength
     experience: 5     # Player starts with 5 experience
   ```
 
-#### 2. Types
+#### 2. Traits
 - **What they are**: Character traits that develop as players make choices
 - **What they're for**: Creating different character paths (warrior, explorer, etc.)
 - **How to use**: Use `"+2"` to increase a trait, `"-1"` to decrease it
 - **Example**:
   ```yaml
-  types:
+  traits:
     Role: [explorer, warrior, scholar, mage, druid]  # These are the traits players can develop
   ```
 
-#### 3. Flags
+#### 3. Has
 - **What they are**: Yes/No questions about the story state
 - **What they're for**: Remembering if something happened (got a key, unlocked a door, etc.)
 - **How to use**: Use `true` for yes, `false` for no
 - **Example**:
   ```yaml
-  flags:
+  has:
     hasKey: false     # Player doesn't have a key yet
     doorUnlocked: false  # Door is still locked
     metWizard: false  # Player hasn't met the wizard yet
   ```
 
-#### 4. Strings
+#### 4. Text
 - **What they are**: Text information to remember
 - **What they're for**: Storing player names, choices, locations, etc.
 - **How to use**: Use quoted text like `"left"` or `"forest"`
 - **Example**:
   ```yaml
-  strings:
+  text:
     playerName: ""        # Player's name (empty until they choose one)
     chosenPath: ""        # Which path they chose (empty until they choose)
     lastLocation: ""      # Where they were last (empty until they visit somewhere)
@@ -225,28 +227,28 @@ Cortext supports four main types of variables that can be used to track game sta
 
 ### Using Variables in Set Blocks
 
-**The `set` block lets you change game variables when players reach a thought or make a choice.**
+**The `set` block lets you change game variables when players reach a scene or make a choice.**
 
-All variable types can be modified in the `set` block of thoughts and options:
+All variable types can be modified in the `set` block of scenes and options:
 
 ```yaml
 set:
-  scores:
+  stats:
     knowledge: "+5"      # Add 5 to knowledge
     strength: "-2"       # Subtract 2 from strength
-  types:
+  traits:
     Role:
       explorer: "+1"     # Add 1 to explorer trait
       warrior: "+1"      # Add 1 to warrior trait
-  flags:
+  has:
     hasKey: true         # Set hasKey to true (player now has the key)
     doorUnlocked: true  # Set doorUnlocked to true (door is now unlocked)
-  strings:
+  text:
     chosenPath: "left"   # Set chosenPath to "left"
     lastLocation: "crossroads"  # Set lastLocation to "crossroads"
 ```
 
-**What this does**: When the player reaches this thought or makes this choice, all these changes happen automatically!
+**What this does**: When the player reaches this scene or makes this choice, all these changes happen automatically!
 
 ### Conditional Content
 
@@ -255,24 +257,37 @@ set:
 Here are examples of how to check game variables:
 
 ```markdown
-{{#if (typeGroup "Role" "explorer" ">=" 3)}}
+{{#trait "Role" "=" "explorer"}}
   **Your explorer instincts kick in!** You notice subtle clues that others might miss.
-{{/if}}
+{{/trait}}
 
-{{#if (score "experience" ">=" 10)}}
+{{#stat "experience" ">=" 10}}
   **You've gained enough experience** to unlock the secret path.
-{{/if}}
+{{/stat}}
 
-{{#if (flag "hasKey")}}
+{{#has "hasKey"}}
   **You have the key!** The door should unlock now.
-{{/if}}
+{{/has}}
 
-{{#if (string "chosenPath" "left")}}
+{{#text "chosenPath" "=" "left"}}
   **You chose the left path** earlier, and it shows in your current situation.
-{{/if}}
+{{/text}}
 ```
 
-**What this does**: The text inside the `{{#if}}` blocks only shows when the condition is true. Otherwise, that text is hidden!
+**What this does**: The text inside the helper blocks only shows when the condition is true. Otherwise, that text is hidden!
+
+### Direct Output
+
+**You can also use the same helpers to display current values directly:**
+
+```markdown
+Your current role is: {{trait "Role"}}
+Your experience level: {{stat "experience"}}
+Do you have a key? {{has "hasKey"}}
+Your chosen path: {{text "chosenPath"}}
+```
+
+**What this does**: These helpers output the actual current values, perfect for showing the player's current status!
 
 ### Dynamic Role-Based Content
 
@@ -282,7 +297,7 @@ Here are examples of how to check game variables:
 In your `metadata.yml`, simply define your role types:
 
 ```yaml
-types:
+traits:
   Role: [explorer, warrior, scholar, mage, druid]
 ```
 
@@ -292,22 +307,33 @@ types:
 - Updates the role as players make choices
 
 #### Using Role-Based Content
-Use the `(typeGroup "Role" "typeName")` helper to show different text based on the player's current role:
+Use the `{{#trait "Role" "=" "typeName"}}` helper to show different text based on the player's current role:
 
 ```markdown
-{{#if (typeGroup "Role" "druid")}}
+{{#trait "Role" "=" "druid"}}
   **You are a Druid!** Your connection to nature guides your path.
-{{else if (typeGroup "Role" "warrior")}}
+{{/trait}}
+
+{{#trait "Role" "=" "warrior"}}
   **You are a Warrior!** Your combat skills protect you.
-{{else if (typeGroup "Role" "scholar")}}
+{{/trait}}
+
+{{#trait "Role" "=" "scholar"}}
   **You are a Scholar!** Your knowledge reveals hidden secrets.
-{{else if (typeGroup "Role" "mage")}}
+{{/trait}}
+
+{{#trait "Role" "=" "mage"}}
   **You are a Mage!** Your magical abilities open new possibilities.
-{{else if (typeGroup "Role" "explorer")}}
+{{/trait}}
+
+{{#trait "Role" "=" "explorer"}}
   **You are an Explorer!** Your curiosity leads you to new discoveries.
-{{else}}
-  **You are still finding your path.** Your role will become clear as you make choices.
-{{/if}}
+{{/trait}}
+```
+
+**You can also display the current role directly:**
+```markdown
+Your current role is: {{trait "Role"}}
 ```
 
 #### How It Works
@@ -322,58 +348,79 @@ Use the `(typeGroup "Role" "typeName")` helper to show different text based on t
 id: role-check
 options:
   - text: Continue
-    next: next-thought
+    next: next-scene
 ---
 
-{{#if (typeGroup "Role" "druid")}}
+{{#trait "Role" "=" "druid"}}
   **As a Druid**, you sense the ancient magic in these ruins. Your connection to nature tells you this place was once a sacred grove.
-{{else if (typeGroup "Role" "warrior")}}
+{{/trait}}
+
+{{#trait "Role" "=" "warrior"}}
   **As a Warrior**, you notice the strategic layout of these ruins. Your combat experience suggests this was once a defensive structure.
-{{else if (typeGroup "Role" "scholar")}}
+{{/trait}}
+
+{{#trait "Role" "=" "scholar"}}
   **As a Scholar**, you recognize the architectural patterns. Your knowledge of ancient civilizations reveals this was a temple complex.
-{{else if (typeGroup "Role" "mage")}}
+{{/trait}}
+
+{{#trait "Role" "=" "mage"}}
   **As a Mage**, you feel the lingering magical energy. Your arcane senses detect powerful enchantments still active here.
-{{else if (typeGroup "Role" "explorer")}}
+{{/trait}}
+
+{{#trait "Role" "=" "explorer"}}
   **As an Explorer**, you're excited by the unknown. Your curiosity drives you to investigate every corner of these mysterious ruins.
-{{/if}}
+{{/trait}}
+
+**Your current role is: {{trait "Role"}}**
 
 What do you do next?
 ```
 
 ## 🔧 Available Handlebars Helpers
 
-### Variable Type Helpers
+The engine provides intelligent helpers that automatically detect whether they're being used for conditional content or direct output. Each helper works in both modes!
 
-#### Score Helpers
-- **`(score "scoreName" ">=" 10)`**: Check if a specific score meets a threshold (e.g., `(score "experience" ">=" 10)`)
-- **`(score "scoreName" "<" 5)`**: Check if a specific score is below a threshold (e.g., `(score "strength" "<" 5)`)
-- **`(score "scoreName" ">" 3)`**: Check if a specific score is above a threshold (e.g., `(score "knowledge" ">" 3)`)
-- **`(score "scoreName" "<=" 8)`**: Check if a specific score is at or below a threshold (e.g., `(score "health" "<=" 8)`)
-- **`(score "scoreName" "==" 15)`**: Check if a specific score equals a value (e.g., `(score "level" "==" 15)`)
-- **`(score "scoreName")`**: Get the current value of a score (e.g., `(score "experience")`)
+### Combined Helpers (Conditional + Output)
 
-#### Type Helpers
-- **`(typeGroup "groupName" "typeName")`**: Check if a type is the highest-scoring type in its group (perfect for role-based content)
-- **`(typeGroup "groupName" "typeName" ">=" 5)`**: Check if a type score meets a threshold (e.g., `(typeGroup "Role" "warrior" ">=" 3)`)
+#### Trait Helpers
+- **`{{#trait "group" "=" "value"}}`**: Check if a trait group has a specific dominant value (e.g., `{{#trait "Role" "=" "explorer"}}`)
+- **`{{#trait "group" ">" 5}}`**: Check if a trait score meets a threshold (e.g., `{{#trait "Role" ">" 3}}`)
+- **`{{trait "group"}}`**: Get the current dominant trait value (e.g., `{{trait "Role"}}` outputs "explorer")
 
-#### Flag Helpers
-- **`(has "flagName")`**: Check if a flag is true (uses the `has` helper)
+#### Stat Helpers
+- **`{{#stat "name" ">=" 10}}`**: Check if a stat meets a threshold (e.g., `{{#stat "experience" ">=" 10}}`)
+- **`{{#stat "name" "<" 5}}`**: Check if a stat is below a threshold (e.g., `{{#stat "strength" "<" 5}}`)
+- **`{{#stat "name" ">" 3}}`**: Check if a stat is above a threshold (e.g., `{{#stat "knowledge" ">" 3}}`)
+- **`{{#stat "name" "<=" 8}}`**: Check if a stat is at or below a threshold (e.g., `{{#stat "health" "<=" 8}}`)
+- **`{{#stat "name" "==" 15}}`**: Check if a stat equals a value (e.g., `{{#stat "level" "==" 15}}`)
+- **`{{stat "name"}}`**: Get the current stat value (e.g., `{{stat "experience"}}` outputs 15)
 
-#### String Helpers
-- **`(string "stringName")`**: Check if a string exists and has content
-- **`(has "stringName")`**: Check if a string has any value (uses the `has` helper)
+#### Text Helpers
+- **`{{#text "name" "=" "value"}}`**: Check if a text value equals a specific string (e.g., `{{#text "chosenPath" "=" "left"}}`)
+- **`{{text "name"}}`**: Get the current text value (e.g., `{{text "chosenPath"}}` outputs "left")
 
-### State Helpers
-- **`(visited "thoughtId")`**: Check if a thought has been visited
-- **`(visit_count)`**: Get the total number of visited thoughts
-- **`(first_time)`**: Check if this is the player's first visit
-- **`(returning)`**: Check if the player has visited before
+#### Has Helpers
+- **`{{#has "flag"}}`**: Check if a flag is true (e.g., `{{#has "foundTreasure"}}`)
+- **`{{has "flag"}}`**: Get the current flag value (e.g., `{{has "foundTreasure"}}` outputs true)
 
-### Logic Helpers
-- **`{{#if condition}}`**: Standard if statement (built into Handlebars)
-- **`{{#unless condition}}`**: Unless statement (built into Handlebars)
-- **`{{#each array}}`**: Loop through an array (built into Handlebars)
-- **`{{#with context}}`**: Change the context for a block (built into Handlebars)
+#### History Helpers
+- **`{{#history "visited_scene"}}`**: Check if a scene has been visited (e.g., `{{#history "visited_start"}}`)
+- **`{{history "visited_scene"}}`**: Get visit count for a scene (e.g., `{{history "start"}}` outputs 1)
+
+### How It Works
+- **With `#`**: `{{#trait "Role" "=" "builder"}}content{{/trait}}` → Conditional rendering
+- **Without `#`**: `{{trait "Role"}}` → Direct output of value
+
+**Example**: The same helper handles both use cases:
+```markdown
+{{#trait "Role" "=" "builder"}}
+  **As a Builder**, you can construct amazing structures.
+{{/trait}}
+
+Your current role is: {{trait "Role"}}
+```
+
+
 
 ## 📚 Story Examples
 
@@ -416,17 +463,17 @@ options:
           rogue: "+1"
 ---
 
-{{#if (typeGroup "Role" "mage" ">=" 2)}}
+{{#trait "Role" "=" "mage"}}
   **Your magical abilities** give you multiple options.
-{{/if}}
+{{/trait}}
 
-{{#if (typeGroup "Role" "warrior" ">=" 2)}}
+{{#trait "Role" "=" "warrior"}}
   **Your combat training** makes you confident in a fight.
-{{/if}}
+{{/trait}}
 
-{{#if (typeGroup "Role" "rogue" ">=" 2)}}
+{{#trait "Role" "=" "rogue"}}
   **Your stealth skills** suggest a sneaky approach.
-{{/if}}
+{{/trait}}
 
 How do you proceed?
 ```
@@ -437,18 +484,20 @@ How do you proceed?
 id: returning-visitor
 options:
   - text: Continue
-    next: next-thought
+    next: next-scene
 ---
 
-{{#if (first_time "returning-visitor")}}
+{{#has "first_time"}}
   Welcome! This is your first time here.
-{{else}}
-  Welcome back! You've been here {{visit_count}} times before.
-{{/if}}
+{{/has}}
 
-{{#if (score "experience" ">=" 20)}}
+{{#has "returning"}}
+  Welcome back! You've been here before.
+{{/has}}
+
+{{#stat "experience" ">=" 20}}
   **You're becoming quite experienced** in these lands.
-{{/if}}
+{{/stat}}
 ```
 
 ### Complex Variable Usage Example
@@ -459,80 +508,86 @@ options:
   - text: Use the key
     next: unlock-door
     set:
-      flags:
+      has:
         doorUnlocked: true
-      scores:
+      stats:
         experience: "+5"
-      strings:
+      text:
         lastAction: "unlocked door"
   - text: Try to break it
     next: break-attempt
     set:
-      scores:
+      stats:
         strength: "+2"
         experience: "+3"
-      types:
+      traits:
         Role:
           warrior: "+1"
-      strings:
+      text:
         lastAction: "tried to break door"
 ---
 
-{{#if (has "hasKey")}}
+{{#has "hasKey"}}
   **You have a key** that might fit this door.
-{{/if}}
+{{/has}}
 
-{{#if (score "strength" ">=" 15)}}
+{{#stat "strength" ">=" 15}}
   **Your strength** might be enough to break through.
-{{/if}}
+{{/stat}}
 
-{{#if (typeGroup "Role" "warrior" ">=" 5)}}
+{{#trait "Role" "=" "warrior"}}
   **Your warrior training** suggests this door can be forced.
-{{/if}}
+{{/trait}}
 
-{{#if (string "lastAction" "unlocked door")}}
+{{#text "lastAction" "=" "unlocked door"}}
   **You previously unlocked a door** - this might be similar.
-{{/if}}
+{{/text}}
+
+**Current status:**
+- Key: {{has "hasKey"}}
+- Strength: {{stat "strength"}}
+- Role: {{trait "Role"}}
+- Last action: {{text "lastAction"}}
 
 What do you do?
 ```
 
 ## 🚨 Important Rules
 
-### 1. Thought IDs Must Be Unique
-- Each thought file must have a unique `id` in its frontmatter
-- IDs are used for navigation between thoughts
+### 1. scene IDs Must Be Unique
+- Each scene file must have a unique `id` in its frontmatter
+- IDs are used for navigation between scenes
 
 ### 2. Valid Navigation Paths
-- Every `next` value in options must point to an existing thought ID
-- The `start.md` thought is automatically loaded when a story begins
+- Every `next` value in options must point to an existing scene ID
+- The `start.md` scene is automatically loaded when a story begins
 
 ### 3. File Naming
-- **Thought files**: Use descriptive names like `start.md`, `crossroads.md`, `deep_ruins.md`
+- **scene files**: Use descriptive names like `start.md`, `crossroads.md`, `deep_ruins.md`
 - **Metadata file**: Must be named `metadata.yml`
 - **Manifest file**: Must be named `stories.json`
 
 ### 4. YAML Syntax
 - **Use spaces, not tabs** for indentation
 - **Quote strings** that contain special characters
-- **Use arrays** for lists like `thoughts: [file1.md, file2.md]`
+- **Use arrays** for lists like `scenes: [file1.md, file2.md]`
 
 ## 🔍 Testing Your Story
 
 ### 1. Validate Structure
-- Check that all `next` references point to valid thought IDs
+- Check that all `next` references point to valid scene IDs
 - Ensure `start.md` exists and is properly formatted
-- Verify all thought files listed in `metadata.yml` exist
+- Verify all scene files listed in `metadata.yml` exist
 
 ### 2. Test Navigation
 - Start the story and follow each path
-- Check that all choices lead to the expected thoughts
+- Check that all choices lead to the expected scenes
 - Verify that state changes (score, types) work correctly
 
 ### 3. Test Conditionals
 - Play through different paths to test conditional content
 - Verify that type-based and score-based conditions work
-- Test visit-based conditions by revisiting thoughts
+- Test visit-based conditions by revisiting scenes
 
 ## 📖 Best Practices
 
@@ -540,17 +595,17 @@ What do you do?
 - **Start simple**: Begin with a basic story structure and add complexity
 - **Plan your paths**: Map out the story flow before writing
 - **Test thoroughly**: Play through all possible paths
-- **Use meaningful IDs**: Make thought IDs descriptive and memorable
+- **Use meaningful IDs**: Make scene IDs descriptive and memorable
 
 ### Content Organization
-- **Group related thoughts**: Use subdirectories for complex stories
+- **Group related scenes**: Use subdirectories for complex stories
 - **Consistent naming**: Follow a consistent pattern for file names
 - **Document your story**: Include comments in metadata for complex logic
 
 ### Performance
 - **Optimize images**: Use appropriately sized images for web
-- **Minimize file size**: Keep thought content concise but engaging
-- **Efficient navigation**: Avoid unnecessary back-and-forth between thoughts
+- **Minimize file size**: Keep scene content concise but engaging
+- **Efficient navigation**: Avoid unnecessary back-and-forth between scenes
 
 ## 🆘 Troubleshooting
 
@@ -561,14 +616,14 @@ What do you do?
 - Verify `metadata.yml` has the correct `id` field
 - Ensure all required fields are present
 
-#### Thoughts Not Found
-- Verify all thought files listed in `metadata.yml` exist
+#### scenes Not Found
+- Verify all scene files listed in `metadata.yml` exist
 - Check that file names match exactly (including case)
-- Ensure thought files are in the `thoughts/` subdirectory
+- Ensure scene files are in the `scenes/` subdirectory
 
 #### Navigation Errors
-- Check that all `next` values point to valid thought IDs
-- Verify that thought IDs are unique across the entire story
+- Check that all `next` values point to valid scene IDs
+- Verify that scene IDs are unique across the entire story
 - Ensure `start.md` exists and is properly formatted
 
 #### Conditional Content Not Working

@@ -1,45 +1,49 @@
 ---
 id: temple
-title: The Temple of Wisdom
+title: The Ancient Temple
 set:
-  score: "+2"
-  knowledge: "+2"
+  stats:
+    experience: "+2"
+    knowledge: "+1"
   types:
-    investigator: "+1"
+    Role:
+      investigator: "+1"
+      rescuer: "+1"
+      explorer: "+1"
 options:
-  - text: Meet the High Lama
-    next: lama
+  - text: Explore the temple chambers
+    next: choice
     set:
+      stats:
+        experience: "+2"
+        knowledge: "+1"
       types:
-        investigator: "+1"
-  - text: Explore the temple library
-    next: library
+        Role:
+          investigator: "+1"
+          explorer: "+1"
+  - text: Return to the valley
+    next: valley
     set:
-      knowledge: "+1"
-  - text: Meditate in the gardens
-    next: lama
-    set:
-      types:
-        rescuer: "+1"
+      stats:
+        experience: "+1"
 ---
-The temple complex is even more magnificent up close. Intricate carvings adorn every surface, telling stories of ancient wisdom and forgotten knowledge. The architecture seems to blend elements from every major civilization throughout history, yet it all works together in perfect harmony.
 
-Chang leads you through the temple's grand halls, explaining that this place has been a sanctuary of knowledge for centuries. "The High Lama has been waiting for someone like you," he says. "Someone who can understand the true nature of Shangri-La."
+The ancient temple rises before you, its weathered stone walls telling stories of civilizations long forgotten. The architecture is unlike anything you've ever seen, with intricate carvings and symbols that seem to pulse with a subtle, otherworldly light.
 
-{{#if (typeGroup "Role" "investigator")}}
-Your analytical mind is working overtime, cataloging every detail. The temple's construction techniques, the materials used, the artwork—all suggest a level of sophistication that shouldn't exist in this remote location.
-{{/if}}
+The temple appears to be dedicated to some kind of ancient wisdom or knowledge, with its walls covered in hieroglyphs and mystical symbols. The air is thick with the weight of history, and you can feel the echoes of the past all around you.
 
-{{#if (typeGroup "Role" "rescuer")}}
-Your compassionate nature makes you wonder about the people who built this place and whether they might have needed help or protection in creating such a sanctuary.
-{{/if}}
+{{#trait "Role" "=" "investigator"}}
+Your analytical mind immediately begins studying the temple's structure and the symbols on its walls, looking for clues about its purpose and the people who built it.
+{{/trait}}
 
-{{#if (typeGroup "Role" "explorer")}}
-Your explorer's spirit is thrilled by the discovery of this ancient place, and you're eager to uncover every secret it holds.
-{{/if}}
+{{#trait "Role" "=" "rescuer"}}
+Your protective instincts make you cautious about entering the temple, concerned about potential dangers that might lurk within its ancient chambers.
+{{/trait}}
 
-The temple's interior is filled with the soft glow of candlelight and the gentle sound of chanting. Monks in saffron robes move about their duties with practiced ease, and the air is thick with the scent of incense and ancient wisdom.
+{{#trait "Role" "=" "explorer"}}
+Your adventurous spirit is immediately drawn to the temple's mysterious chambers, eager to discover what secrets and treasures they might contain.
+{{/trait}}
 
-As you walk through the halls, you notice that the temple seems to be built around a central library—a vast collection of books and scrolls that contains knowledge from every corner of the world and every era of human history.
+The temple's main entrance is flanked by two massive stone pillars, each carved with different symbols representing what appear to be fundamental forces of nature. The air around the entrance crackles with energy, and you can feel the power that once flowed through this place.
 
-The High Lama's chambers are located at the very top of the temple, accessible only by a winding staircase that seems to spiral upward forever. Chang tells you that the High Lama is very old—perhaps hundreds of years old—and that he has been the guardian of Shangri-La's secrets for generations. 
+What do you do next? 

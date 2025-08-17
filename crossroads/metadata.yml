@@ -6,15 +6,15 @@ author: Cortext Team
 version: 1.0.0
 
 # Game variables (what the story remembers)
-scores:
+stats:
   experience: 0  # Overall experience gained
   wisdom: 0      # Wisdom and understanding
 
 types:
   Role: [explorer, druid]  # Character's current role (auto-assigned based on highest score)
 
-# Story Flags
-flags:
+# Story Has
+has:
   blessing_received: false  # Has the character received a blessing?
   treasure: false           # Has the character found treasure?
 

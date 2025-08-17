@@ -1,50 +1,53 @@
 ---
 id: valley
-title: Shangri-La
+title: The Hidden Valley
 set:
-  score: "+2"
-  knowledge: "+1"
+  stats:
+    experience: "+2"
+    knowledge: "+1"
   types:
-    explorer: "+1"
+    Role:
+      explorer: "+1"
+      investigator: "+1"
+      rescuer: "+1"
 options:
-  - text: Approach the temple complex
+  - text: Explore the valley
     next: temple
     set:
-      score: "+1"
+      stats:
+        experience: "+2"
+        knowledge: "+1"
       types:
-        investigator: "+1"
-  - text: Explore the valley gardens
-    next: temple
+        Role:
+          explorer: "+1"
+          investigator: "+1"
+  - text: Return to the crash site
+    next: plane
     set:
-      types:
-        explorer: "+1"
-  - text: Seek out the inhabitants
-    next: temple
-    set:
-      score: "+1"
-      types:
-        rescuer: "+1"
+      stats:
+        experience: "+1"
 ---
-The valley of Shangri-La stretches before you in all its glory. Lush gardens filled with exotic flowers and fruit trees surround elegant buildings that seem to have been designed by a master architect. The air is filled with the sweet scent of blossoms and the gentle sound of flowing water.
 
-{{#if (typeGroup "Role" "explorer")}}
-Your explorer's spirit is overwhelmed by the sheer wonder of this hidden paradise, and you can't wait to discover every corner of this magical place.
-{{/if}}
+The hidden valley stretches before you in all its breathtaking beauty. Lush green meadows dotted with colorful wildflowers, crystal-clear streams flowing from snow-capped peaks, and ancient trees that seem to touch the sky—this place is like nothing you've ever seen before.
 
-{{#if (typeGroup "Role" "investigator")}}
-Your analytical mind immediately begins cataloging the architectural details, the cultural patterns, and the technological marvels that make this place possible.
-{{/if}}
+The air is crisp and clean, filled with the sweet scent of flowers and the gentle sound of flowing water. The temperature is perfect—not too hot, not too cold—and you feel an immediate sense of peace and tranquility wash over you.
 
-{{#if (typeGroup "Role" "rescuer")}}
-Your compassionate nature makes you wonder about the people who live here and whether they might need any assistance or have stories to share.
-{{/if}}
+{{#trait "Role" "=" "explorer"}}
+Your explorer's instincts are immediately drawn to the valley's many mysteries, from the ancient stone structures you can see in the distance to the hidden paths that wind through the landscape.
+{{/trait}}
 
-The inhabitants of this hidden paradise move about their daily activities with a grace and serenity that's almost otherworldly. They appear to be of various ages and backgrounds, yet all share a certain timeless quality. Their clothing is simple but elegant, and they greet you with warm smiles and curious glances.
+{{#trait "Role" "=" "investigator"}}
+Your analytical mind immediately begins cataloging the valley's features, noting the unusual climate, the perfect weather, and the way everything seems to be arranged with purpose and intention.
+{{/trait}}
 
-{{#if (visited "plane")}}
-You recognize some of the people from the plane—they seem to have been here for some time, yet they look exactly as they did when you last saw them. The passage of time seems to have no effect on them.
-{{/if}}
+{{#trait "Role" "=" "rescuer"}}
+Your protective instincts make you concerned about the other passengers from the plane, and you're determined to find help or a way to get them to safety.
+{{/trait}}
 
-A tall, distinguished man approaches you. He introduces himself as Chang, the High Lama's assistant. "Welcome to Shangri-La," he says with a gentle smile. "You have been expected. The High Lama would like to speak with you."
+{{#history "plane"}}
+**You remember the crash site** and the mysterious path that led you here, and you're grateful that you followed it to this beautiful place.
+{{/history}}
 
-The temple complex rises majestically in the center of the valley, its golden spires reaching toward the sky. It's clear that this is the heart of Shangri-La, where the secrets of this mysterious place are kept. 
+The valley seems to be completely isolated from the outside world, surrounded by towering mountain peaks that would be impossible to climb. Yet despite its remote location, the valley shows signs of human habitation—well-maintained paths, cultivated gardens, and what appears to be a temple complex in the distance.
+
+What do you do next? 

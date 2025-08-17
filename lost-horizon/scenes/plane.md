@@ -1,46 +1,52 @@
 ---
 id: plane
-title: Investigating the Wreckage
+title: The Crash Site
 set:
-  score: "+1"
-  knowledge: "+1"
+  stats:
+    experience: "+2"
+    knowledge: "+1"
   types:
-    investigator: "+1"
+    Role:
+      investigator: "+1"
+      rescuer: "+1"
+      explorer: "+1"
 options:
-  - text: Search for clues about the flight
+  - text: Search for survivors
+    next: valley
+    set:
+      types:
+        Role:
+          rescuer: "+1"
+  - text: Investigate the wreckage
+    next: valley
+    set:
+      types:
+        Role:
+          investigator: "+1"
+  - text: Follow the path
     next: path
     set:
       types:
-        investigator: "+1"
-  - text: Look for supplies and equipment
-    next: path
-    set:
-      score: "+1"
-      types:
-        rescuer: "+1"
-  - text: Examine the mysterious path
-    next: path
-    set:
-      score: "+1"
-      types:
-        explorer: "+1"
+        Role:
+          explorer: "+1"
 ---
-You carefully make your way through the wreckage, your instincts taking over. The plane appears to be a commercial airliner, but something about it seems... off. The interior is more luxurious than you'd expect, with plush seating and fine wood paneling.
 
-As you search through the debris, you notice several unusual details: the flight manifest is missing, there are no standard airline markings, and the navigation equipment seems to be from a different era entirely. The pilot's logbook contains entries in a language you don't recognize, and the coordinates listed don't match any known flight paths.
+The crash site is a scene of devastation and mystery. The plane's fuselage is broken in several places, with debris scattered across the snow-covered ground. The cold mountain air stings your lungs, and you can see your breath in the crisp air.
 
-{{#if (typeGroup "Role" "investigator")}}
-Your analytical training kicks in, and you begin to systematically document everything you find. The evidence suggests this wasn't a regular commercial flight at all, but something much more mysterious.
-{{/if}}
+Your survival instincts kick in immediately. You need to assess the situation, look for other survivors, and find a way to get help or reach safety. The well-maintained path you noticed earlier seems to be your best option, but first you should check if anyone else needs your assistance.
 
-{{#if (typeGroup "Role" "rescuer")}}
-Your protective instincts drive you to search more thoroughly, looking for any signs of other survivors who might need immediate assistance.
-{{/if}}
+The wreckage tells a story of what happened. The plane appears to have been caught in some kind of storm or turbulence, and the pilots may have been trying to make an emergency landing when they lost control. The fact that you survived relatively unscathed is nothing short of miraculous.
 
-{{#if (typeGroup "Role" "explorer")}}
-The mysterious nature of this crash site excites your adventurous spirit, and you're eager to discover what secrets this place holds.
-{{/if}}
+{{#trait "Role" "=" "investigator"}}
+Your analytical mind immediately begins cataloging the evidence around you, looking for clues about what caused the crash and what might happen next.
+{{/trait}}
 
-Among the scattered luggage, you find several items that seem out of place: ancient-looking books, maps with strange symbols, and what appears to be a journal written in an elegant hand. The journal's last entry mentions "Shangri-La" and "the valley of eternal youth."
+{{#trait "Role" "=" "rescuer"}}
+Your heart goes out to the other passengers who might need your help, and you're determined to do everything you can to assist them.
+{{/trait}}
 
-The path you noticed earlier seems to beckon you, its smooth stones and careful construction suggesting it was made by human hands—but who would build such a path in this remote location? 
+{{#trait "Role" "=" "explorer"}}
+Your adventurous spirit is already looking ahead to what lies beyond the crash site, eager to discover what this mysterious mountain valley has to offer.
+{{/trait}}
+
+What do you do next? 

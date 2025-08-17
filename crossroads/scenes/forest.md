@@ -1,48 +1,54 @@
 ---
 id: forest
-title: Mystical Forest
+title: The Ancient Forest
 set:
-  score: "+1"
+  stats:
+    experience: "+2"
+    wisdom: "+1"
   types:
-    druid: "+1"
+    Role:
+      druid: "+1"
+      explorer: "+1"
 options:
-  - text: Return to the spirit
-    next: spirit
-    if: visited "spirit"
-  - text: Speak to the trees
+  - text: Continue deeper into the forest
     next: spirit
     set:
+      stats:
+        experience: "+2"
+        wisdom: "+1"
       types:
-        druid: "+1"
-  - text: Turn back
-    next: start
+        Role:
+          druid: "+1"
+          explorer: "+1"
+  - text: Return to the crossroads
+    next: crossroads
+    set:
+      stats:
+        experience: "+1"
 ---
-{{#if (visited "forest")}}
-You've been here before. The trees remember your previous visit, their ancient bark seeming to pulse with recognition as you step once more into their sacred grove. The forest floor, carpeted with fallen leaves and moss, yields softly beneath your feet, and you can feel the deep, slow heartbeat of the forest itself.
 
-{{#if (type "Role" "druid")}}
-Your deepened connection to nature allows you to understand the subtle language of the forest, hearing the ancient songs that flow through the roots and branches.
-{{/if}}
+The ancient forest surrounds you with its towering trees and mysterious atmosphere. The air is thick with the scent of earth and growth, and you can hear the gentle rustling of leaves and the distant calls of forest creatures.
 
-{{#if (type "Role" "explorer")}}
-Your explorer's instincts help you navigate the forest's hidden pathways, noticing the subtle markers that guide travelers deeper into its mysteries.
-{{/if}}
+{{#history "forest"}}
+**You've walked these paths before**, and the familiar sights and sounds bring back memories of your previous journey through these woods.
+{{/history}}
 
-The air is alive with the whispers of countless leaves, each one carrying fragments of wisdom passed down through generations of growth and decay. Sunlight filters through the canopy in golden shafts, creating pools of light that dance and shift with the breeze.
+{{#trait "Role" "=" "druid"}}
+Your druidic senses immediately connect with the natural energy flowing through this forest, feeling the ancient magic that has protected these groves for centuries.
+{{/trait}}
 
-The trees stand as silent sentinels, their branches reaching skyward like arms raised in prayer, and you sense that they have witnessed countless travelers before you, each leaving their mark on the forest's collective memory.
-{{else}}
-You feel the trees listening as you step into the glade, their ancient wisdom radiating from every trunk and branch. The forest welcomes you with a gentle rustling of leaves, and you can sense the deep, primordial energy that flows through this sacred space.
+{{#trait "Role" "=" "explorer"}}
+Your explorer's instincts help you navigate the complex network of paths and identify the most promising routes deeper into the forest.
+{{/trait}}
 
-{{#if (type "Role" "druid")}}
-Your natural affinity for the forest allows you to sense the ancient magic that flows through this place, feeling the connection between all living things.
-{{/if}}
+The forest seems to be alive with its own consciousness, its ancient trees standing as silent guardians of secrets that have been kept safe for generations. You can feel the weight of history pressing down upon you, and you sense that this place holds knowledge that few mortals have ever been privileged to receive.
 
-{{#if (type "Role" "explorer")}}
-Your explorer's curiosity drives you to investigate the forest's secrets, mapping the hidden pathways and noting the unusual formations.
-{{/if}}
+{{#trait "Role" "=" "druid"}}
+Your connection to nature allows you to understand the forest's rhythms and recognize the signs that point toward its most sacred places.
+{{/trait}}
 
-The air is thick with the scent of earth and growth, and you notice how the very atmosphere seems to shimmer with unseen magic. Moss-covered stones dot the forest floor like ancient altars, and the gnarled roots of massive oaks create natural pathways that seem to lead deeper into the heart of the forest.
+{{#trait "Role" "=" "explorer"}}
+Your exploration skills reveal hidden paths and secret clearings that others might miss, leading you toward the heart of the forest's mysteries.
+{{/trait}}
 
-The trees themselves seem to lean in closer, their branches forming a protective canopy that filters the sunlight into a soft, dappled glow. You can now almost hear them speaking to each other in a language older than words, and you wonder if they might speak to you as well.
-{{/if}} 
+What do you do next? 

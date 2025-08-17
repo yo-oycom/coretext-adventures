@@ -2,7 +2,7 @@
 id: stay-forever
 title: Eternal Life in Shangri-La
 set:
-  scores:
+  stats:
     experience: "+10"
     knowledge: "+5"
 options: []
@@ -12,9 +12,9 @@ You have chosen to stay in Shangri-La, and you feel a profound sense of peace an
 
 "Welcome to your new home," he says. "You have chosen wisely. Shangri-La will be richer for your presence, and you will find that life here offers rewards beyond mere immortality."
 
-{{#if (score "knowledge" ">=" 5)}}
+{{#stat "knowledge" ">=" 5}}
 Your understanding of Shangri-La's true purpose makes this choice even more meaningful. You're not just choosing eternal life—you're choosing to become a guardian of human wisdom, a protector of knowledge that might otherwise be lost to time.
-{{/if}}
+{{/stat}}
 
 As you settle into your new life in Shangri-La, you discover that the valley offers more than just extended life. The community is warm and welcoming, and you find yourself surrounded by people who share your values and your thirst for knowledge.
 

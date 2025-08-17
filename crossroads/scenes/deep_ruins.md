@@ -1,50 +1,56 @@
 ---
 id: deep_ruins
-title: Deep Ruins
+title: The Heart of the Ruins
 set:
-  score: "+3"
-  treasure: true
+  stats:
+    experience: "+3"
+    wisdom: "+2"
   types:
-    explorer: "+2"
+    Role:
+      explorer: "+2"
+      druid: "+1"
 options:
-  - text: Take the treasure
-    next: crossroads      # ← Change this from "start" to "crossroads"
+  - text: Continue deeper
+    next: spirit
     set:
-      score: "+5"          # ← Keep the +5 score bonus
+      stats:
+        experience: "+2"
+        wisdom: "+1"
       types:
-        explorer: "+1"     # ← Keep the +1 explorer bonus
-  - text: Leave it be
-    next: start          # ← This can stay as "start"
+        Role:
+          explorer: "+1"
+          druid: "+1"
+  - text: Return to the main ruins
+    next: ruins
     set:
-      types:
-        druid: "+1"
+      stats:
+        experience: "+1"
 ---
-{{#if (visited "deep_ruins")}}
-You've explored these depths before. The treasure chest still glows with its ethereal light, casting dancing shadows across the chamber walls that seem to tell stories of their own. The air is thick with the scent of old magic and something more ancient still, and you can feel the weight of countless years pressing down upon you.
 
-The chamber itself seems to breathe, its very stones alive with the energy of ages past, and you notice how the light from the chest seems to pulse in time with your own heartbeat. The treasure within calls to you with a voice that speaks directly to your soul, promising power and knowledge beyond mortal comprehension.
+You've ventured into the deepest chambers of the ancient ruins, where the air is thick with the weight of forgotten knowledge. The stone walls here are covered in intricate carvings and symbols that seem to pulse with a subtle, otherworldly light.
 
-Yet there's something else here too—a sense of responsibility, perhaps, or a warning that some things are better left undisturbed.
+{{#history "deep_ruins"}}
+**You've explored these depths before**, and the familiar patterns in the stonework bring back memories of your previous discoveries.
+{{/history}}
 
-{{#if (typeGroup "Role" "explorer")}}
-Your explorer's spirit is drawn to the treasure, but your experience has taught you to be more cautious about such powerful artifacts.
-{{/if}}
+The deeper chambers reveal the true purpose of this ancient structure. This was once a place of great learning and power, where scholars and mystics gathered to study the secrets of the universe. The carvings on the walls tell stories of cosmic forces, elemental magic, and the fundamental laws that govern reality itself.
 
-{{#if (typeGroup "Role" "druid")}}
-Your connection to natural forces makes you wary of disturbing the ancient magic that has lain dormant for so long.
-{{/if}}
-{{else}}
-Deep in the ruins, you find an ancient treasure chest glowing with magical energy, its surface adorned with intricate runes that pulse with an otherworldly light. The chamber around you is vast and echoing, its walls lined with carvings that seem to move and shift in the flickering illumination.
+{{#trait "Role" "=" "explorer"}}
+Your explorer's expertise helps you decipher the complex patterns and understand the layout of these sacred chambers.
+{{/trait}}
 
-The air crackles with static electricity, and you can feel the raw power emanating from the chest like heat from a forge. The runes themselves seem to tell a story—one of creation and destruction, of power gained and lost, of choices that shaped the very fabric of reality.
+{{#trait "Role" "=" "druid"}}
+Your druidic knowledge allows you to recognize the ancient magical symbols and understand their significance.
+{{/trait}}
 
-The treasure within calls to you with a voice that speaks directly to your soul, promising knowledge and power beyond mortal comprehension. Yet there's something else here too—a sense of responsibility, perhaps, or a warning that some things are better left undisturbed. The chest seems to be waiting for you to make a choice that will echo through the ages.
+At the center of the deepest chamber, you find a circular platform surrounded by twelve stone pillars. Each pillar is carved with different symbols representing the fundamental forces of nature. The air here crackles with energy, and you can feel the power that once flowed through this place.
 
-{{#if (typeGroup "Role" "explorer")}}
-Your explorer's instincts tell you this is a discovery of immense importance, but you also sense the weight of responsibility that comes with such power.
-{{/if}}
+{{#trait "Role" "=" "explorer"}}
+Your exploration skills reveal hidden mechanisms and secret passages that others might miss.
+{{/trait}}
 
-{{#if (typeGroup "Role" "druid")}}
-Your natural wisdom and connection to ancient forces makes you cautious about disturbing the delicate balance of magic that has been maintained here for centuries.
-{{/if}}
-{{/if}} 
+{{#trait "Role" "=" "druid"}}
+Your magical senses detect that this platform was once used for powerful rituals and ceremonies.
+{{/trait}}
+
+What do you do next? 
