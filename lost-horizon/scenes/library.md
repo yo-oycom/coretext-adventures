@@ -8,9 +8,25 @@ set:
 options:
   - text: Study the ancient texts
     next: choice
+    if: trait "Role" "=" "investigator"
+    set:
+      stats:
+        knowledge: "+3"
+        experience: "+2"
+  - text: Study the ancient texts
+    next: choice
+    if: trait "Role" "=" "rescuer"
     set:
       stats:
         knowledge: "+2"
+        experience: "+1"
+  - text: Study the ancient texts
+    next: choice
+    if: trait "Role" "=" "explorer"
+    set:
+      stats:
+        knowledge: "+2"
+        experience: "+2"
   - text: Search for information about Shangri-La
     next: choice
     set:
@@ -23,7 +39,15 @@ options:
 The library is a vast, circular chamber filled with bookshelves that reach from floor to ceiling. The air is thick with the scent of old parchment and leather bindings, and the soft light filtering through stained glass windows creates an atmosphere of reverence and wonder.
 
 {{#trait "Role" "=" "investigator"}}
-Your investigator's training helps you navigate the library's complex organization system. The books are arranged not by subject or author, but by some deeper, more esoteric classification that seems to follow patterns of wisdom and understanding.
+Your investigator's training helps you navigate the library's complex organization system. The books are arranged not by subject or author, but by some deeper, more esoteric classification that seems to follow patterns of wisdom and understanding. You're drawn to the most ancient and mysterious texts.
+{{/trait}}
+
+{{#trait "Role" "=" "rescuer"}}
+Your rescuer's heart guides you toward texts that might help others. You look for knowledge about healing, wisdom, and ways to bring peace to a troubled world. The humanitarian aspects of Shangri-La's knowledge call to you.
+{{/trait}}
+
+{{#trait "Role" "=" "explorer"}}
+Your explorer's curiosity drives you to discover the most unusual and hidden knowledge. You're fascinated by maps, ancient languages, and texts that reveal the secrets of lost civilizations. Every shelf holds potential discoveries.
 {{/trait}}
 
 The collection is truly extraordinary. You find ancient manuscripts from civilizations long forgotten, scientific treatises that predate modern discoveries, and philosophical works that contain insights that would revolutionize human understanding if they were known to the outside world.
@@ -40,4 +64,6 @@ Your growing knowledge of Shangri-La helps you understand the deeper significanc
 
 The library's central reading room is dominated by a massive table covered in ancient scrolls and open books. It's clear that this is where the High Lama and his scholars study and preserve the knowledge that makes Shangri-La so special.
 
-As you explore the library, you begin to understand that Shangri-La's true purpose isn't just to provide eternal youth—it's to serve as a beacon of hope and wisdom for humanity, a place where the best of human knowledge and culture can be preserved for future generations. 
+As you explore the library, you begin to understand that Shangri-La's true purpose isn't just to provide eternal youth—it's to serve as a beacon of hope and wisdom for humanity, a place where the best of human knowledge and culture can be preserved for future generations.
+
+What will you focus on in your studies? 

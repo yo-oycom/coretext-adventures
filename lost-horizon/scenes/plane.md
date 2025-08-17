@@ -5,7 +5,7 @@ set:
   stats:
     experience: "+2"
     knowledge: "+1"
-  types:
+  traits:
     Role:
       investigator: "+1"
       rescuer: "+1"
@@ -14,19 +14,19 @@ options:
   - text: Search for survivors
     next: valley
     set:
-      types:
+      traits:
         Role:
           rescuer: "+1"
   - text: Investigate the wreckage
     next: valley
     set:
-      types:
+      traits:
         Role:
           investigator: "+1"
   - text: Follow the path
     next: path
     set:
-      types:
+      traits:
         Role:
           explorer: "+1"
 ---

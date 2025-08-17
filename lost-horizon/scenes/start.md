@@ -9,19 +9,19 @@ options:
   - text: Investigate the crash site
     next: plane
     set:
-      types:
+      traits:
         Role:
           investigator: "+2"
   - text: Look for other survivors
     next: plane
     set:
-      types:
+      traits:
         Role:
           rescuer: "+2"
   - text: Follow the mysterious path
     next: path
     set:
-      types:
+      traits:
         Role:
           explorer: "+2"
 ---

@@ -5,7 +5,7 @@ set:
   stats:
     experience: "+2"
     knowledge: "+1"
-  types:
+  traits:
     Role:
       explorer: "+1"
       investigator: "+1"
@@ -17,7 +17,7 @@ options:
       stats:
         experience: "+2"
         knowledge: "+1"
-      types:
+      traits:
         Role:
           explorer: "+1"
           investigator: "+1"

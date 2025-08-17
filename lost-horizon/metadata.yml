@@ -5,8 +5,8 @@ image: https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiNJZJ417IuIB8W
 author: Cortext Team
 version: 1.0.1
 
-# Type Groups (Dynamic)
-types:
+# Trait Groups (Dynamic)
+traits:
   Role: [investigator, rescuer, explorer]  # Character's current role (auto-assigned based on highest score)
 
 # Game variables (what the story remembers)

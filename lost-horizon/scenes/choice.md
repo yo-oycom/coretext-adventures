@@ -7,9 +7,27 @@ set:
 options:
   - text: Stay in Shangri-La forever
     next: stay-forever
-    if: score >= 3
+    if: trait "Role" "=" "investigator"
+    set:
+      stats:
+        experience: "+2"
+  - text: Stay in Shangri-La forever
+    next: stay-forever
+    if: trait "Role" "=" "rescuer"
+    set:
+      stats:
+        experience: "+2"
+  - text: Stay in Shangri-La forever
+    next: stay-forever
+    if: trait "Role" "=" "explorer"
+    set:
+      stats:
+        experience: "+2"
   - text: Return to the outside world
     next: return-world
+    set:
+      stats:
+        experience: "+3"
 ---
 
 You stand at a crossroads that will determine the course of your life. Shangri-La stretches before you in all its beauty and wonder—a place of eternal youth, wisdom, and peace. The outside world, with all its chaos, conflict, and uncertainty, lies behind you.
@@ -19,7 +37,15 @@ Your time in the library and your conversations with the High Lama have given yo
 {{/stat}}
 
 {{#trait "Role" "=" "investigator"}}
-Your investigator's instincts tell you that there's more to this choice than meets the eye. The valley's existence, the way you were brought here, the timing of your arrival—all suggest that this moment was carefully orchestrated.
+Your investigator's instincts tell you that there's more to this choice than meets the eye. The valley's existence, the way you were brought here, the timing of your arrival—all suggest that this moment was carefully orchestrated. You've uncovered the deeper truth about Shangri-La's purpose.
+{{/trait}}
+
+{{#trait "Role" "=" "rescuer"}}
+Your rescuer's heart tells you that the outside world needs people like you—people who can carry the light of Shangri-La back to humanity. You've seen the suffering in the world and know you can make a difference.
+{{/trait}}
+
+{{#trait "Role" "=" "explorer"}}
+Your explorer's spirit is torn between the endless discoveries that await you in Shangri-La and the unknown adventures that lie beyond these mountains. You've charted new territories and know there are always more mysteries to uncover.
 {{/trait}}
 
 The High Lama has explained that Shangri-La needs people like you—people who can understand its true value and help preserve its wisdom for future generations. But he also understands that the outside world needs people who can carry the valley's lessons back to humanity.
